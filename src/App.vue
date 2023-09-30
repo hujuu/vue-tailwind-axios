@@ -12,6 +12,14 @@ const data = ref<string | null>(null);
 const receiveData = (value: string) => {
   data.value = value;
 };
+
+
+const selectedPerson = ref(null)
+
+const handleSelected = (person) => {
+  console.log('Selected person:', person)
+  selectedPerson.value = person
+}
 </script>
 
 <template>
@@ -28,7 +36,10 @@ const receiveData = (value: string) => {
     Hello world!
   </h1>
   <DataComponent />
-  <ServiceSelect />
+  <ServiceSelect @update:selected="handleSelected" />
+  <div v-if="selectedPerson">
+    Selected Person: {{ selectedPerson.name }}
+  </div>
   <ChildOne @sendData="receiveData" />
   <ChildTwo :data="data" />
 </template>

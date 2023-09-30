@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
@@ -45,4 +45,10 @@ const people = [
 ]
 
 const selected = ref(people[3])
+
+const emit = defineEmits()
+
+watchEffect(() => {
+  emit('update:selected', selected.value)  // 選択が変更されたときに親コンポーネントに選択された値を送信
+})
 </script>
