@@ -8,17 +8,18 @@ import ChildOne from './components/ChildOne.vue';
 import ChildTwo from './components/ChildTwo.vue';
 
 const data = ref<string | null>(null);
+const service = ref<string | null>(null);
 
 const receiveData = (value: string) => {
   data.value = value;
 };
-
 
 const selectedPerson = ref(null)
 
 const handleSelected = (person) => {
   console.log('Selected person:', person)
   selectedPerson.value = person
+  service.value = person.id
 }
 </script>
 
@@ -35,7 +36,7 @@ const handleSelected = (person) => {
   <h1 class="text-3xl font-bold underline">
     Hello world!
   </h1>
-  <DataComponent />
+  <DataComponent :service="service" />
   <ServiceSelect @update:selected="handleSelected" />
   <div v-if="selectedPerson">
     Selected Person: {{ selectedPerson.name }}
