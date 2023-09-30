@@ -32,8 +32,8 @@ import { Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions } f
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
 const people = [
-  { id: 1, name: 'Wade Cooper' },
-  { id: 2, name: 'Arlene Mccoy' },
+  { id: 'g1', name: 'ＮＨＫ総合１' },
+  { id: 'e1', name: 'ＮＨＫＥテレ１' },
   { id: 3, name: 'Devon Webb' },
   { id: 4, name: 'Tom Cook' },
   { id: 5, name: 'Tanya Fox' },
@@ -44,7 +44,7 @@ const people = [
   { id: 10, name: 'Emil Schaefer' },
 ]
 
-const selected = ref(people[3])
+const selected = ref(people[1])
 
 const emit = defineEmits()
 
