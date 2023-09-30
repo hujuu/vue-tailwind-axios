@@ -3,9 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
-const props = defineProps({
-  data: String
+defineProps({
+  data: {
+    type: String as () => string | null,
+  }
 });
 </script>
