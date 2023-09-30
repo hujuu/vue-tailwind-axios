@@ -1,5 +1,17 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 import HelloWorld from './components/HelloWorld.vue'
+import DataComponent from './components/DataComponent.vue'
+import ServiceSelect from './components/ServiceSelect.vue';
+import ChildOne from './components/ChildOne.vue';
+import ChildTwo from './components/ChildTwo.vue';
+
+const data = ref<string | null>(null);
+
+const receiveData = (value: string) => {
+  data.value = value;
+};
 </script>
 
 <template>
@@ -12,19 +24,11 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
+  <DataComponent />
+  <ServiceSelect />
+  <ChildOne @sendData="receiveData" />
+  <ChildTwo :data="data" />
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
