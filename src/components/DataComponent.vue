@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, watchEffect } from 'vue';
 import axios from 'axios';
 
 const props = defineProps({
@@ -20,19 +20,15 @@ const props = defineProps({
   }
 });
 
-// 状態管理のためのrefを定義
 const data = ref(null);
 const error = ref(null);
 
-// APIのURL
-const url = `https://api.nhk.or.jp/v2/pg/now/130/${props.service}.json`;
+watchEffect(async () => {
+  if (!props.service) return;
 
-// コンポーネントがマウントされた時にデータを取得
-onMounted(async () => {
+  const url = `https://api.nhk.or.jp/v2/pg/now/130/${props.service}.json`;
   try {
-    // 環境変数からAPIキーを取得
     const key = import.meta.env.VITE_API_KEY;
-    // パラメータとしてAPIキーを渡す
     const response = await axios.get(url, { params: { key } });
     data.value = response.data;
   } catch (err) {
