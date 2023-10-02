@@ -33,9 +33,6 @@ const handleSelected = (person) => {
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
   <DataComponent :service="service" />
   <ServiceSelect @update:selected="handleSelected" />
   <div v-if="selectedPerson">
