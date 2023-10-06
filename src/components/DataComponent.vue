@@ -20,8 +20,8 @@ const props = defineProps({
   }
 });
 
-const data = ref(null);
-const error = ref(null);
+const data = ref<any | null>(null);
+const error = ref<string | null>(null);
 
 watchEffect(async () => {
   if (!props.service) return;
