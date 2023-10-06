@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
+import {ref, computed} from "vue";
+import {divideTwoNums} from "./functions.ts";
 import HelloWorld from './components/HelloWorld.vue'
 import DataComponent from './components/DataComponent.vue'
 import ServiceSelect from './components/ServiceSelect.vue';
@@ -21,6 +21,14 @@ const handleSelected = (person: { id: string; name: string }) => {
   selectedPerson.value = person
   service.value = person.id
 }
+
+const num1 = ref(6);
+const num2 = ref(3);
+const ans = computed(
+    (): number => {
+      return divideTwoNums(num1.value, num2.value);
+    }
+);
 </script>
 
 <template>
@@ -33,6 +41,7 @@ const handleSelected = (person: { id: string; name: string }) => {
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <p>{{num1}}÷{{num2}}={{ans}}</p>
   <DataComponent :service="service" />
   <ServiceSelect @update:selected="handleSelected" />
   <div v-if="selectedPerson">
