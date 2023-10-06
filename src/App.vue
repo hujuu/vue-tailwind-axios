@@ -14,9 +14,9 @@ const receiveData = (value: string) => {
   data.value = value;
 };
 
-const selectedPerson = ref(null)
+const selectedPerson = ref<{ id: string; name: string; } | null>(null);
 
-const handleSelected = (person) => {
+const handleSelected = (person: { id: string; name: string }) => {
   console.log('Selected person:', person)
   selectedPerson.value = person
   service.value = person.id
